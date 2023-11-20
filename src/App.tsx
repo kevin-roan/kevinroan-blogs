@@ -1,11 +1,13 @@
-import { Box } from "@chakra-ui/react";
 import "./App.css";
-import { Header } from "./components";
+import { Header, Footer } from "./components";
+import { Home } from "./pages";
 
 function App() {
   return (
     <>
       <Header />
+      <Home />
+      <Footer />
     </>
   );
 }
