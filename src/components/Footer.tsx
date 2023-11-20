@@ -1,5 +1,10 @@
-import React from "react";
-import { Box, HStack, Heading, Spacer } from "@chakra-ui/react";
+import { Box, HStack, Heading } from "@chakra-ui/react";
+import {
+  AiFillGithub,
+  AiOutlineTwitter,
+  AiFillInstagram,
+} from "react-icons/ai";
+import { FaLinkedinIn } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -10,12 +15,20 @@ function Footer() {
       alignItems={"center"}
       justifyContent={"space-around"}
     >
-      <Heading fontSize={"1rem"}>&copy; KevinRoan Blogs - Kevin-Roan</Heading>
-      <HStack border={"2px solid white"}>
-        <li>insta</li>
-        <li>insta</li>
-        <li>insta</li>
-        <li>insta</li>
+      <Heading fontSize={"1rem"}>&copy; Blogs - Kevin Roan</Heading>
+      <HStack>
+        <a href="https://github.com/kevin-roan/">
+          <AiFillGithub />
+        </a>
+        <a href="https://x.com/kevinroan_/">
+          <AiOutlineTwitter />
+        </a>
+        <a href="https://instagram.com/kevinroan_/">
+          <AiFillInstagram />
+        </a>
+        <a href="https://linkedin.com/in/kevinroan/">
+          <FaLinkedinIn />
+        </a>
       </HStack>
     </Box>
   );

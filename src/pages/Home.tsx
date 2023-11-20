@@ -12,7 +12,6 @@ function Home() {
       </Heading>
       <Stack
         display={"flex"}
-        border={"2px solid white"}
         flexDirection={"row"}
         justifyContent={"center"}
         flexWrap={"wrap"}

@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, HStack, Spacer, Heading, Button } from "@chakra-ui/react";
+import { Box, HStack, Spacer, Heading } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "../ColormodeSwitcher";
 
 function Header() {
