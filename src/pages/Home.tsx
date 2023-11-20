@@ -1,5 +1,5 @@
-import { Box, Heading } from "@chakra-ui/react";
-import React from "react";
+import { Box, Heading, Stack } from "@chakra-ui/react";
+import { BlogCard } from "../components";
 
 function Home() {
   return (
@@ -10,6 +10,21 @@ function Home() {
       <Heading textAlign={"center"}>
         Explore <span style={{ color: "blueviolet" }}>Learn</span> & Build
       </Heading>
+      <Stack
+        display={"flex"}
+        border={"2px solid white"}
+        flexDirection={"row"}
+        justifyContent={"center"}
+        flexWrap={"wrap"}
+        padding={"2vmax"}
+      >
+        <BlogCard />
+        <BlogCard />
+        <BlogCard />
+        <BlogCard />
+        <BlogCard />
+        <BlogCard />
+      </Stack>
     </Box>
   );
 }
