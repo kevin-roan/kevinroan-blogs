@@ -1,4 +1,5 @@
 import { Box, HStack, Heading } from "@chakra-ui/react";
+import { FaCopyright } from "react-icons/fa";
 import {
   AiFillGithub,
   AiOutlineTwitter,
@@ -10,12 +11,21 @@ function Footer() {
   return (
     <Box
       minHeight={"8vh"}
-      bg={"var(--primary-color)"}
+      bgColor={"var(--primary-color)"}
       display={"flex"}
       alignItems={"center"}
       justifyContent={"space-around"}
+      color={"white"}
     >
-      <Heading fontSize={"1rem"}>&copy; Blogs - Kevin Roan</Heading>
+      <Heading
+        fontSize={"1rem"}
+        fontFamily={"Comic"}
+        display={"flex"}
+        alignItems={"center"}
+        gap={"5px"}
+      >
+        <FaCopyright /> Blogs - Kevin Roan
+      </Heading>
       <HStack>
         <a href="https://github.com/kevin-roan/">
           <AiFillGithub />

@@ -5,9 +5,10 @@ const BlogCard = () => {
   return (
     <Box
       width={"300px"}
-      border={"2px solid var(--primary-color)"}
+      border={"2px solid var(--secondary-color)"}
       minHeight={"34vh"}
       position={"relative"}
+      borderRadius={"10px"}
     >
       <Container>
         <Flex direction={"column"} alignItems={"center"} overflow={"auto"}>
@@ -15,12 +16,18 @@ const BlogCard = () => {
             alignSelf={"flex-start"}
             marginY={"10px"}
             height="2rem"
-            colorScheme="blue"
+            colorScheme="green"
           >
             React
           </Button>
-          <Heading>Understanding Git and Github</Heading>
-          <Text overflow={"hidden"} height="6rem">
+          <Heading
+            fontSize={["1.7rem", "2rem"]}
+            maxWidth={"sm"}
+            textTransform={"capitalize"}
+          >
+            Understanding Git and Github
+          </Heading>
+          <Text overflow={"hidden"} minHeight="4rem" fontSize={"1rem"}>
             Understanding the difference between Git and Github with examples
             and their main use cases or how they are helpful for the
             developers...
@@ -30,10 +37,12 @@ const BlogCard = () => {
       <Box
         position={"absolute"}
         bottom={"0"}
-        borderTop={"2px solid var(--primary-color)"}
+        borderTop={"2px solid var(--secondary-color)"}
         display={"flex"}
         justifyContent={"space-between"}
         width={"100%"}
+        bg="transparent"
+        backdropFilter={"blur(2px)"}
       >
         <Button variant={"ghost"} color="blueviolet-600">
           Learn More <FaArrowRight />

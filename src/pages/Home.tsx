@@ -4,11 +4,11 @@ import { BlogCard } from "../components";
 function Home() {
   return (
     <Box>
-      <Heading fontStyle={"italic"} textAlign={"center"} fontSize={"sm"}>
-        Welcome to my Blogs
+      <Heading textAlign={"center"} fontSize={["sm", "lg"]}>
+        kevin-roan-blogs
       </Heading>
-      <Heading textAlign={"center"}>
-        Explore <span style={{ color: "blueviolet" }}>Learn</span> & Build
+      <Heading textAlign={"center"} fontSize={["2rem", "4rem"]}>
+        Explore <span style={{ color: "blueviolet" }}>Learn</span> Build 🚀
       </Heading>
       <Stack
         display={"flex"}
