@@ -44,7 +44,7 @@ const BlogCard = () => {
         bg="transparent"
         backdropFilter={"blur(2px)"}
       >
-        <Button variant={"ghost"} color="blueviolet-600">
+        <Button variant={"ghost"} color="blueviolet-600" disabled={true}>
           Learn More <FaArrowRight />
         </Button>
         <Button variant={"ghost"} color="blueviolet-100">
