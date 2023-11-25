@@ -9,6 +9,59 @@ import {
 import { useDroppable } from "@dnd-kit/core";
 import { useState } from "react";
 
+const Admin = () => {
+  const [title, setTitle] = useState<string | number>("");
+  const [language, setLanguage] = useState<string | number>("");
+  console.log(language, title);
+  const handleFormSubmit = () => {
+    // firebase post configurations
+    window.prompt("form submitted succesfully");
+  };
+  return (
+    <>
+      <Box height={"83vh"}>
+        <Heading
+          fontSize={"2rem"}
+          textTransform={"capitalize"}
+          textAlign={"center"}
+          color="darkslategray"
+        >
+          Drag and Drop Markdown file here
+        </Heading>
+        <Droppable />
+        <FormControl
+          display={"flex"}
+          flexDirection={"column"}
+          gap="10px"
+          alignItems={"center"}
+          padding={"2vmax"}
+          onSubmit={(e) => e.preventDefault}
+        >
+          <FormLabel alignSelf={"flex-start"}>Blog Title</FormLabel>
+          <Input
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="How to upload markdown file in react..."
+            value={title}
+          />
+          <FormLabel alignSelf={"flex-start"}>Language</FormLabel>
+          <Input
+            type="text"
+            placeholder="React"
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          />
+          <Button colorScheme="orange" onClick={handleFormSubmit}>
+            Upload
+          </Button>
+        </FormControl>
+      </Box>
+    </>
+  );
+};
+
+export default Admin;
+
 function Droppable() {
   const { setNodeRef, isOver } = useDroppable({
     id: "unique-id",
@@ -48,43 +101,3 @@ function Droppable() {
     </div>
   );
 }
-
-const Admin = () => {
-  const [title, setTitle] = useState<string | number>("");
-  return (
-    <>
-      <Box height={"83vh"}>
-        <Heading
-          fontSize={"2rem"}
-          textTransform={"capitalize"}
-          textAlign={"center"}
-          color="darkslategray"
-        >
-          Drag and Drop Markdown file here
-        </Heading>
-        <Droppable />
-        <FormControl
-          display={"flex"}
-          flexDirection={"column"}
-          gap="10px"
-          alignItems={"center"}
-          padding={"2vmax"}
-          onSubmit={(e) => e.preventDefault}
-        >
-          <FormLabel alignSelf={"flex-start"}>Blog Title</FormLabel>
-          <Input
-            type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="How to upload markdown file in react..."
-            value={title}
-          />
-          <FormLabel alignSelf={"flex-start"}>Language</FormLabel>
-          <Input type="text" placeholder="React" />
-          <Button colorScheme="orange">Upload</Button>
-        </FormControl>
-      </Box>
-    </>
-  );
-};
-
-export default Admin;
