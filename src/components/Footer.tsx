@@ -15,7 +15,6 @@ function Footer() {
       display={"flex"}
       alignItems={"center"}
       justifyContent={"space-around"}
-      color={"white"}
     >
       <Heading
         fontSize={"1rem"}
@@ -23,6 +22,7 @@ function Footer() {
         display={"flex"}
         alignItems={"center"}
         gap={"5px"}
+        colorScheme="white"
       >
         <FaCopyright /> Blogs - Kevin Roan
       </Heading>

@@ -1,12 +1,20 @@
 import { Box, Button, Heading } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import firebase from "firebase/compat/app";
 import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 const AdminLogin = () => {
-  const masteremail: string | number = "ludangupta";
-  const masterpassword: string | number = 2334;
   const [password, setPassword] = useState<string | number>("");
   const [email, setEmail] = useState<string | number>("");
+  const loginWithEmail = async () => {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      alert("login success");
+    } catch (error) {
+      alert("Authentication Failed" + error.message);
+    }
+  };
   return (
     <Box minH={"83vh"}>
       <Heading fontSize={"2rem"} textAlign={"center"}>
@@ -17,20 +25,18 @@ const AdminLogin = () => {
           <FormLabel>Username</FormLabel>
           <Input type="email" onChange={(e) => setEmail(e.target.value)} />
           <FormLabel>Password</FormLabel>
-          <Input type="email" onChange={(e) => setPassword(e.target.value)} />
-          <Button colorScheme="orange" marginY={"23px"}>
-            Login
+          <Input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button
+            colorScheme="orange"
+            marginY={"23px"}
+            onClick={loginWithEmail}
+          >
+            <Link to="/admin">Login</Link>
           </Button>
         </FormControl>
-        {masteremail && email ? (
-          email == masteremail ? (
-            <li>login success</li>
-          ) : (
-            <>Email doesn't Match </>
-          )
-        ) : (
-          <>Please Enter Email</>
-        )}
       </Box>
     </Box>
   );

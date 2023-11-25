@@ -13,7 +13,6 @@ const BlogViewer = () => {
           overflow={"auto"}
         >
           <Heading
-            colorScheme="light"
             color={"var(--secondary-color)"}
             textAlign={"center"}
             marginY={"20px"}

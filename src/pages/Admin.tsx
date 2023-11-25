@@ -52,37 +52,38 @@ function Droppable() {
 const Admin = () => {
   const [title, setTitle] = useState<string | number>("");
   return (
-    <Box height={"83vh"}>
-      <Heading
-        fontSize={"2rem"}
-        textTransform={"capitalize"}
-        textAlign={"center"}
-        color="darkslategray"
-        colorScheme="light"
-      >
-        Drag and Drop Markdown file here
-      </Heading>
-      <Droppable />
-      <FormControl
-        display={"flex"}
-        flexDirection={"column"}
-        gap="10px"
-        alignItems={"center"}
-        padding={"2vmax"}
-        onSubmit={(e) => e.preventDefault}
-      >
-        <FormLabel alignSelf={"flex-start"}>Blog Title</FormLabel>
-        <Input
-          type="text"
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="How to upload markdown file in react..."
-          value={title}
-        />
-        <FormLabel alignSelf={"flex-start"}>Language</FormLabel>
-        <Input type="text" placeholder="React" />
-        <Button colorScheme="orange">Upload</Button>
-      </FormControl>
-    </Box>
+    <>
+      <Box height={"83vh"}>
+        <Heading
+          fontSize={"2rem"}
+          textTransform={"capitalize"}
+          textAlign={"center"}
+          color="darkslategray"
+        >
+          Drag and Drop Markdown file here
+        </Heading>
+        <Droppable />
+        <FormControl
+          display={"flex"}
+          flexDirection={"column"}
+          gap="10px"
+          alignItems={"center"}
+          padding={"2vmax"}
+          onSubmit={(e) => e.preventDefault}
+        >
+          <FormLabel alignSelf={"flex-start"}>Blog Title</FormLabel>
+          <Input
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="How to upload markdown file in react..."
+            value={title}
+          />
+          <FormLabel alignSelf={"flex-start"}>Language</FormLabel>
+          <Input type="text" placeholder="React" />
+          <Button colorScheme="orange">Upload</Button>
+        </FormControl>
+      </Box>
+    </>
   );
 };
 
