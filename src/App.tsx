@@ -4,7 +4,7 @@ import { Header, Footer, AdminLogin, BlogViewer } from "./components";
 import { Admin, Home } from "./pages";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { useState, useEffect } from "react";
-import { app, db } from "./Helpers/firebaseHelper";
+import { app } from "./Helpers/firebaseHelper";
 
 function App() {
   const [user, setUser] = useState(null);
