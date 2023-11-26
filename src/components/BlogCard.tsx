@@ -1,7 +1,19 @@
 import { Box, Flex, Button, Container, Heading, Text } from "@chakra-ui/react";
 import { FaArrowRight } from "react-icons/fa";
 
-const BlogCard = () => {
+interface BlogCardProps {
+  id: number | string;
+  title: string | number;
+  description: string | number;
+  tags: string | number;
+}
+
+const BlogCard: React.FC<BlogCardProps> = ({
+  id,
+  title,
+  description,
+  tags,
+}) => {
   return (
     <Box
       width={"300px"}
@@ -18,19 +30,17 @@ const BlogCard = () => {
             height="2rem"
             colorScheme="green"
           >
-            React
+            {tags}
           </Button>
           <Heading
             fontSize={["1.7rem", "2rem"]}
             maxWidth={"sm"}
             textTransform={"capitalize"}
           >
-            Understanding Git and Github
+            {title}
           </Heading>
           <Text overflow={"hidden"} minHeight="4rem" fontSize={"1rem"}>
-            Understanding the difference between Git and Github with examples
-            and their main use cases or how they are helpful for the
-            developers...
+            {description}
           </Text>
         </Flex>
       </Container>

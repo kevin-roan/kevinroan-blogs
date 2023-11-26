@@ -8,15 +8,25 @@ import {
 } from "@chakra-ui/react";
 import { useDroppable } from "@dnd-kit/core";
 import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../Helpers/firebaseHelper";
 
 const Admin = () => {
-  const [title, setTitle] = useState<string | number>("");
-  const [language, setLanguage] = useState<string | number>("");
-  console.log(language, title);
-  const handleFormSubmit = () => {
-    // firebase post configurations
-    window.prompt("form submitted succesfully");
+  const addBlog = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "blogs"), {
+        title: title,
+        description: description,
+        tags: tag,
+      });
+      console.log("Blog added succesfully", docRef.id);
+    } catch (error) {
+      console.error("Failed to add Blog", error);
+    }
   };
+  const [title, setTitle] = useState<string | number>("");
+  const [tag, setTag] = useState<string | number>("");
+  const [description, setDescription] = useState<string | number>("");
   return (
     <>
       <Box height={"83vh"}>
@@ -44,14 +54,21 @@ const Admin = () => {
             placeholder="How to upload markdown file in react..."
             value={title}
           />
-          <FormLabel alignSelf={"flex-start"}>Language</FormLabel>
+          <FormLabel alignSelf={"flex-start"}>Tags</FormLabel>
           <Input
             type="text"
-            placeholder="React"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
+            placeholder="Tags"
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
           />
-          <Button colorScheme="orange" onClick={handleFormSubmit}>
+          <FormLabel alignSelf={"flex-start"}>Description</FormLabel>
+          <Input
+            type="text"
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <Button colorScheme="orange" onClick={addBlog}>
             Upload
           </Button>
         </FormControl>

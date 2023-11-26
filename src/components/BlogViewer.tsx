@@ -1,8 +1,28 @@
 import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import MarkdownManager from "./MarkdownManager";
 import mdFiled from "../assets/blogs/test.md";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect } from "react";
+import { db } from "../Helpers/firebaseHelper";
 
 const BlogViewer = () => {
+  useEffect(() => {
+    const getBlogs = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "blogs"));
+        querySnapshot.forEach((doc) => {
+          console.log(
+            `${doc.id} Ludan=> ${doc.data().language}, Title => ${
+              doc.data().blog_title
+            }`,
+          );
+        });
+      } catch (error) {
+        console.error("Error", error);
+      }
+    };
+    getBlogs();
+  }, []);
   return (
     <Box>
       <Flex height={"83vh"} justifyContent={"center"}>
