@@ -84,15 +84,15 @@ function Droppable() {
     id: "unique-id",
   });
 
-  const handleDrop = (event) => {
+  const handleDrop = (event: DragEvent) => {
     event.preventDefault();
-
-    const files = event.dataTransfer.files;
-
-    if (files.length > 0) {
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
       const firstFile = files[0];
       console.log("Dropped file:", firstFile);
       window.confirm("file uploaded succesfully");
+    } else {
+      console.log("Error Getting file");
     }
   };
 

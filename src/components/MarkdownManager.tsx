@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-const MarkdownComponent = ({ mdFilePath }) => {
+interface MarkdownComponentProps {
+  mdFilePath: string;
+}
+
+const MarkdownComponent: React.FC<MarkdownComponentProps> = ({
+  mdFilePath,
+}) => {
   const [mdContent, setMdContent] = useState("");
 
   useEffect(() => {

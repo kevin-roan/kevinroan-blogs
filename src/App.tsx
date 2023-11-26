@@ -6,11 +6,20 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import { useState, useEffect } from "react";
 import { app } from "./Helpers/firebaseHelper";
 
+export interface User {
+  uid: string;
+  email: string;
+}
+
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
     const unsubscribe = app.auth().onAuthStateChanged((authUser) => {
-      setUser(authUser);
+      if (authUser !== null) {
+        setUser(authUser as User);
+      } else {
+        console.log("Admin not LoggedIn");
+      }
     });
     return () => unsubscribe();
   }, []);

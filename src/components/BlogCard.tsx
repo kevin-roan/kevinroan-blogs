@@ -2,18 +2,13 @@ import { Box, Flex, Button, Container, Heading, Text } from "@chakra-ui/react";
 import { FaArrowRight } from "react-icons/fa";
 
 interface BlogCardProps {
-  id: number | string;
-  title: string | number;
-  description: string | number;
-  tags: string | number;
+  id: string;
+  title: string;
+  description: string;
+  tags: string;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({
-  id,
-  title,
-  description,
-  tags,
-}) => {
+const BlogCard: React.FC<BlogCardProps> = ({ title, description, tags }) => {
   return (
     <Box
       width={"300px"}

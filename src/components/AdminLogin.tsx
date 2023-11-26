@@ -2,17 +2,22 @@ import { Box, Button, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import firebase from "firebase/compat/app";
+import { FirebaseError } from "firebase/app";
 import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 const AdminLogin = () => {
-  const [password, setPassword] = useState<string | number>("");
-  const [email, setEmail] = useState<string | number>("");
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const loginWithEmail = async () => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       alert("login success");
-    } catch (error) {
-      alert("Authentication Failed" + error.message);
+    } catch (err) {
+      if (err instanceof FirebaseError) {
+        alert("Firebaes Authentication Failed" + err.message);
+      } else {
+        console.error("Unexpected Error", err);
+      }
     }
   };
   return (

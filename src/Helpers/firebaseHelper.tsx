@@ -1,6 +1,5 @@
 import firebase from "firebase/compat/app";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
