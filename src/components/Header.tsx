@@ -1,6 +1,7 @@
 import { Box, HStack, Text, Spacer, Heading, Flex } from "@chakra-ui/react";
 import { FaTerminal } from "react-icons/fa";
 import { ColorModeSwitcher } from "../ColormodeSwitcher";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -24,7 +25,7 @@ function Header() {
               paddingX={"20px"}
               colorScheme="white"
             >
-              Latest
+              <Link to="/">Latest</Link>
             </Text>
           </Flex>
         </Heading>

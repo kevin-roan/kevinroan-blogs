@@ -1,6 +1,5 @@
 import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import MarkdownManager from "./MarkdownManager";
-import mdFiled from "../assets/blogs/test.md";
 import { doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
@@ -9,35 +8,36 @@ import { useParams } from "react-router-dom";
 
 const BlogViewer = () => {
   const [blogdata, setBlogdata] = useState({ title: "", description: "" });
-  const [blogFileUrl, setBlogFileUrl] = useState(null);
+  const [blogFileUrl, setBlogFileUrl] = useState<string | null>(null);
   const { id } = useParams();
   useEffect(() => {
     const getBlogsWithId = async () => {
       try {
-        const docRef = doc(db, "blogs", id);
-        const docSnapshot = await getDoc(docRef);
-        if (docSnapshot.exists()) {
-          setBlogdata({
-            title: docSnapshot.data().title,
-            description: docSnapshot.data().description,
-          });
-        } else {
-          console.log("Erroi mathining id");
+        if (db && id) {
+          const docRef = doc(db, "blogs", id);
+          const docSnapshot = await getDoc(docRef);
+          if (docSnapshot.exists()) {
+            setBlogdata({
+              title: docSnapshot.data().title,
+              description: docSnapshot.data().description,
+            });
+          } else {
+            console.log("Erroi mathining id");
+          }
         }
       } catch (err) {
         console.error("Error Fetching Data", err);
       }
     };
-    const getBlogFiles = async () => {
+    const fetchMarkdown = async () => {
       const storage = getStorage();
       const blogFileRef = ref(storage, `blogs/${id}/markdownfile`);
       const url = await getDownloadURL(blogFileRef);
       setBlogFileUrl(url);
-      console.log("markdown file url", url);
     };
 
     getBlogsWithId();
-    getBlogFiles();
+    fetchMarkdown();
   }, [id]);
   return (
     <Box>

@@ -12,12 +12,18 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../Helpers/firebaseHelper";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 
+interface markdownFileProps {
+  fileData: Blob | Uint8Array | ArrayBuffer | null;
+}
+
 const Admin = () => {
-  const [markdownfile, setMarkdownFile] = useState(null);
+  const [markdownfile, setMarkdownFile] = useState<markdownFileProps>({
+    fileData: null,
+  });
   const [title, setTitle] = useState<string | number>("");
   const [tag, setTag] = useState<string | number>("");
   const [description, setDescription] = useState<string | number>("");
-  const [blogId, setBlogId] = useState(null);
+  const [blogId, setBlogId] = useState<string | null>(null);
 
   const addBlog = async () => {
     try {
@@ -38,9 +44,10 @@ const Admin = () => {
   useEffect(() => {
     const uploadMarkdown = () => {
       const storage = getStorage();
-      if (blogId) {
+      const { fileData } = markdownfile;
+      if (blogId && fileData) {
         const storageRef = ref(storage, `blogs/${blogId}/markdownfile`);
-        uploadBytes(storageRef, markdownfile).then(() => {
+        uploadBytes(storageRef, fileData).then(() => {
           console.log("File Uploaded To Store Succesfully");
         });
       }
@@ -99,7 +106,11 @@ const Admin = () => {
 
 export default Admin;
 
-function Droppable({ setMarkdownFile }) {
+interface DroppableProps {
+  setMarkdownFile: React.Dispatch<React.SetStateAction<markdownFileProps>>;
+}
+
+function Droppable({ setMarkdownFile }: DroppableProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: "unique-id",
   });
@@ -109,9 +120,9 @@ function Droppable({ setMarkdownFile }) {
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
       const firstFile = files[0];
-      setMarkdownFile(firstFile);
+      setMarkdownFile((prev) => ({ ...prev, fileData: firstFile }));
       console.log("Dropped file:", firstFile);
-      window.confirm("file uploaded succesfully");
+      window.confirm("file uploaded successfully");
     } else {
       console.log("Error Getting file");
     }
