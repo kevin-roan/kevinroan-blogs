@@ -3,6 +3,7 @@ import { BlogCard } from "../components";
 import { db } from "../Helpers/firebaseHelper";
 import { getDocs, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface Blog {
   id: string;
@@ -55,13 +56,15 @@ function Home() {
       >
         {blogdata &&
           blogdata.map((blog, index) => (
-            <BlogCard
-              key={index}
-              title={blog.title}
-              description={blog.description}
-              id={blog.id}
-              tags={blog.tags}
-            />
+            <Link to={`/viewblog/${blog.id}`}>
+              <BlogCard
+                key={index}
+                title={blog.title}
+                description={blog.description}
+                id={blog.id}
+                tags={blog.tags}
+              />
+            </Link>
           ))}
       </Stack>
     </Box>

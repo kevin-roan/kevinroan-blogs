@@ -29,7 +29,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/viewblog" element={<BlogViewer />} />
+        <Route path="/viewblog/:id" element={<BlogViewer />} />
         <Route path="/login" element={<AdminLogin />} />
         <Route element={<PrivateRoutes isAdmin={user} />}>
           <Route path="/admin" element={<Admin />} />
