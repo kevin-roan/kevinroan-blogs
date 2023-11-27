@@ -27,25 +27,10 @@ const BlogViewer = () => {
       } catch (err) {
         console.error("Error Fetching Data", err);
       }
-      // try {
-      //   const q = query(collection(db, "blogs"), where("id", "==", id));
-      //   const querySnapshot = await getDocs(q);
-      //   querySnapshot.forEach((doc) => {
-      //     setBlogdata({
-      //       title: doc.data().title,
-      //       description: doc.data().description,
-      //     });
-      //   });
-      // } catch (error) {
-      //   console.error("Error", error);
-      // }
     };
     const getBlogFiles = async () => {
       const storage = getStorage();
-      const blogFileRef = ref(
-        storage,
-        "blogs/Arch Install UEFI with DualBoot.md",
-      );
+      const blogFileRef = ref(storage, `blogs/${id}/markdownfile`);
       const url = await getDownloadURL(blogFileRef);
       setBlogFileUrl(url);
       console.log("markdown file url", url);

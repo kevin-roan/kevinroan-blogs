@@ -22,7 +22,7 @@ function Home() {
         const newBlogData: Blog[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          // append all the data to the array
+          // i need to find a better way to do this.
           newBlogData.push({
             id: doc.id,
             language: data.language,

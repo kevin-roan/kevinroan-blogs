@@ -7,11 +7,18 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useDroppable } from "@dnd-kit/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../Helpers/firebaseHelper";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 const Admin = () => {
+  const [markdownfile, setMarkdownFile] = useState(null);
+  const [title, setTitle] = useState<string | number>("");
+  const [tag, setTag] = useState<string | number>("");
+  const [description, setDescription] = useState<string | number>("");
+  const [blogId, setBlogId] = useState(null);
+
   const addBlog = async () => {
     try {
       const docRef = await addDoc(collection(db, "blogs"), {
@@ -19,14 +26,27 @@ const Admin = () => {
         description: description,
         tags: tag,
       });
-      console.log("Blog added succesfully", docRef.id);
+      if (docRef.id) {
+        setBlogId(docRef.id);
+        console.log("Blog added to upload list", docRef.id);
+      }
     } catch (error) {
       console.error("Failed to add Blog", error);
     }
   };
-  const [title, setTitle] = useState<string | number>("");
-  const [tag, setTag] = useState<string | number>("");
-  const [description, setDescription] = useState<string | number>("");
+
+  useEffect(() => {
+    const uploadMarkdown = () => {
+      const storage = getStorage();
+      if (blogId) {
+        const storageRef = ref(storage, `blogs/${blogId}/markdownfile`);
+        uploadBytes(storageRef, markdownfile).then(() => {
+          console.log("File Uploaded To Store Succesfully");
+        });
+      }
+    };
+    uploadMarkdown();
+  }, [blogId, markdownfile]);
   return (
     <>
       <Box height={"83vh"}>
@@ -38,7 +58,7 @@ const Admin = () => {
         >
           Drag and Drop Markdown file here
         </Heading>
-        <Droppable />
+        <Droppable setMarkdownFile={setMarkdownFile} />
         <FormControl
           display={"flex"}
           flexDirection={"column"}
@@ -79,7 +99,7 @@ const Admin = () => {
 
 export default Admin;
 
-function Droppable() {
+function Droppable({ setMarkdownFile }) {
   const { setNodeRef, isOver } = useDroppable({
     id: "unique-id",
   });
@@ -89,6 +109,7 @@ function Droppable() {
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
       const firstFile = files[0];
+      setMarkdownFile(firstFile);
       console.log("Dropped file:", firstFile);
       window.confirm("file uploaded succesfully");
     } else {
