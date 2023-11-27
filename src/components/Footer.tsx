@@ -18,7 +18,6 @@ function Footer() {
     >
       <Heading
         fontSize={"1rem"}
-        fontFamily={"Comic"}
         display={"flex"}
         alignItems={"center"}
         gap={"5px"}

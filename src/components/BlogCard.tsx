@@ -16,6 +16,9 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, tags }) => {
       minHeight={"34vh"}
       position={"relative"}
       borderRadius={"10px"}
+      border="2px solid blueviolet"
+      height="50vh"
+      overflow={"hidden"}
     >
       <Container>
         <Flex direction={"column"} alignItems={"center"} overflow={"auto"}>
@@ -28,7 +31,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, tags }) => {
             {tags}
           </Button>
           <Heading
-            fontSize={["1.7rem", "2rem"]}
+            fontSize={["1.7rem", "1.4rem"]}
             maxWidth={"sm"}
             textTransform={"capitalize"}
           >
@@ -52,9 +55,9 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, tags }) => {
         <Button variant={"ghost"} color="blueviolet-600" disabled={true}>
           Learn More <FaArrowRight />
         </Button>
-        <Button variant={"ghost"} color="blueviolet-100">
+        <Text display="flex" alignItems={"center"} paddingX={"10px"}>
           4 Min Read
-        </Button>
+        </Text>
       </Box>
     </Box>
   );

@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import MarkdownManager from "./MarkdownManager";
+import { BarLoader } from "react-spinners";
 import { doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
@@ -41,31 +42,34 @@ const BlogViewer = () => {
   }, [id]);
   return (
     <Box>
-      <Flex height={"83vh"} justifyContent={"center"}>
+      <Flex justifyContent={"center"}>
         <Stack
-          border={"2px solid black"}
-          height={"99%"}
-          width={"50%"}
-          overflow={"auto"}
+          borderRadius={"10px"}
+          padding="40px"
+          width={"50vmax"}
+          overflowX={"auto"}
         >
-          <Heading
-            color={"var(--secondary-color)"}
-            textAlign={"center"}
-            marginY={"20px"}
-          >
+          <Heading fontSize={"2rem"} color="#2BB98F" textAlign={"center"}>
             {blogdata.title}
           </Heading>
-          <Text
-            color={"var(--secondary-color)"}
-            textTransform={"capitalize"}
-            padding={"20px"}
-          >
-            {blogdata.description}
-          </Text>
+          {blogdata.description ? (
+            <Text
+              color={"var(--secondary-color)"}
+              border="2px solid pink"
+              padding="10px"
+              borderRadius={"10px"}
+            >
+              {blogdata.description}
+            </Text>
+          ) : null}
           {blogFileUrl ? (
             <MarkdownManager mdFilePath={blogFileUrl} />
           ) : (
-            <p>Loading Markdown File...</p>
+            <>
+              <Flex alignItems={"center"} justifyContent={"center"}>
+                <BarLoader color="#36d7b7" />
+              </Flex>
+            </>
           )}
         </Stack>
       </Flex>

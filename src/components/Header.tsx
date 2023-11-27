@@ -20,11 +20,7 @@ function Header() {
         <Heading fontSize="1.4rem" marginX={"40px"}>
           <Flex alignItems={"center"}>
             <FaTerminal />{" "}
-            <Text
-              fontFamily={"sans-serif"}
-              paddingX={"20px"}
-              colorScheme="white"
-            >
+            <Text paddingX={"20px"} colorScheme="white">
               <Link to="/">Latest</Link>
             </Text>
           </Flex>

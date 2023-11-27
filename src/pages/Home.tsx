@@ -4,6 +4,7 @@ import { db } from "../Helpers/firebaseHelper";
 import { getDocs, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { BarLoader } from "react-spinners";
 
 interface Blog {
   id: string;
@@ -15,6 +16,7 @@ interface Blog {
 
 function Home() {
   const [blogdata, setBlogData] = useState<Blog[]>([]);
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     const fetchDocs = async () => {
       try {
@@ -37,36 +39,48 @@ function Home() {
       }
     };
     fetchDocs();
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
-
   return (
     <Box>
-      <Heading textAlign={"center"} fontSize={["sm", "lg"]}>
-        kevin-roan-blogs
-      </Heading>
-      <Heading textAlign={"center"} fontSize={["2rem", "4rem"]}>
-        Explore <span style={{ color: "blueviolet" }}>Learn</span> Build 🚀
-      </Heading>
-      <Stack
-        display={"flex"}
-        flexDirection={"row"}
-        justifyContent={"center"}
-        flexWrap={"wrap"}
-        padding={"2vmax"}
-      >
-        {blogdata &&
-          blogdata.map((blog, index) => (
-            <Link to={`/viewblog/${blog.id}`}>
-              <BlogCard
-                key={index}
-                title={blog.title}
-                description={blog.description}
-                id={blog.id}
-                tags={blog.tags}
-              />
-            </Link>
-          ))}
-      </Stack>
+      {isLoading ? (
+        <Box
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          height={"83vh"}
+        >
+          <BarLoader color="blueviolet" />
+        </Box>
+      ) : (
+        <>
+          <Heading textAlign={"center"} fontSize={["2rem", "4rem"]}>
+            Explore <span style={{ color: "blueviolet" }}>Learn</span> Build 🚀
+          </Heading>
+          <Stack
+            display={"flex"}
+            flexDirection={"row"}
+            justifyContent={"center"}
+            flexWrap={"wrap"}
+            padding={"2vmax"}
+          >
+            {blogdata &&
+              blogdata.map((blog, index) => (
+                <Link to={`/viewblog/${blog.id}`}>
+                  <BlogCard
+                    key={index}
+                    title={blog.title}
+                    description={blog.description}
+                    id={blog.id}
+                    tags={blog.tags}
+                  />
+                </Link>
+              ))}
+          </Stack>
+        </>
+      )}
     </Box>
   );
 }
