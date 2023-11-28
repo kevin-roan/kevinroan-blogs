@@ -1,0 +1,4 @@
+// vercel.json or now.json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
