@@ -16,7 +16,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, tags }) => {
       minHeight={"34vh"}
       position={"relative"}
       borderRadius={"10px"}
-      border="2px solid blueviolet"
       height="50vh"
       overflow={"hidden"}
     >
