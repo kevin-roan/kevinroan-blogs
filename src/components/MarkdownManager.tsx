@@ -23,7 +23,6 @@ const MarkdownComponent: React.FC<MarkdownComponentProps> = ({
 
     fetchMdContent();
   }, [mdFilePath]);
-
   return (
     <div>
       <ReactMarkdown>{mdContent}</ReactMarkdown>
