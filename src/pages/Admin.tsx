@@ -150,22 +150,3 @@ function Droppable({ setMarkdownFile }: DroppableProps) {
     </div>
   );
 }
-
-// const ReadTimeCalculator = (markdownFileObject) => {
-//   try {
-//     if (markdownFileObject && markdownFileObject.content) {
-//       const content = markdownFileObject.content;
-//       const words = content.match(/\b\w+\b/g);
-//       const wordCount = words ? words.length : 0;
-//       console.log("word count", wordCount);
-//       console.log("total read time", Math.ceil(wordCount / 200), "minutes");
-//     } else {
-//       throw new Error(
-//         "Invalid markdown file object. Missing content property.",
-//       );
-//     }
-//   } catch (error) {
-//     console.error("Error reading the file:", error.message);
-//     return -1;
-//   }
-// };
