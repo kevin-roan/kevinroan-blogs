@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface MarkdownComponentProps {
   mdFilePath: string;
@@ -24,7 +25,7 @@ const MarkdownComponent: React.FC<MarkdownComponentProps> = ({
     fetchMdContent();
   }, [mdFilePath]);
   return (
-    <div>
+    <div className="markdown">
       <ReactMarkdown>{mdContent}</ReactMarkdown>
     </div>
   );
