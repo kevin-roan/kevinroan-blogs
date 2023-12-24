@@ -19,9 +19,11 @@ function Header() {
       <HStack color="var(--text-color-light)">
         <Heading fontSize="1.4rem" marginX={"40px"}>
           <Flex alignItems={"center"}>
-            <FaTerminal />{" "}
+            <Link to="/">
+              <FaTerminal />
+            </Link>
             <Text paddingX={"20px"} colorScheme="white">
-              <Link to="/">Latest</Link>
+              <Link to="/"></Link>
             </Text>
           </Flex>
         </Heading>

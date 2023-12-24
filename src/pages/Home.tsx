@@ -1,4 +1,4 @@
-import { Box, Heading, Stack } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import { BlogCard } from "../components";
 import { db } from "../Helpers/firebaseHelper";
 import { getDocs, collection } from "firebase/firestore";
@@ -44,21 +44,28 @@ function Home() {
     }, 1000);
   }, []);
   return (
-    <Box>
+    <Box
+      height={"83vh"}
+      display={"flex"}
+      alignItems={"center"}
+      justifyContent={"center"}
+    >
       {isLoading ? (
         <Box
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
-          height={"83vh"}
+          height={"100vh"}
         >
           <BarLoader color="blueviolet" />
         </Box>
       ) : (
         <>
-          <Heading textAlign={"center"} fontSize={["2rem", "4rem"]}>
-            Explore <span style={{ color: "blueviolet" }}>Learn</span> Build 🚀
+          {/* 
+         <Heading textAlign={"center"} fontSize={["2rem", "4rem"]}>
+            Kevin Roan <span style={{ color: "blueviolet" }}>Blogs</span>
           </Heading>
+          */}
           <Stack
             display={"flex"}
             flexDirection={"row"}

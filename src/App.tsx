@@ -1,11 +1,17 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import "firebase/compat/auth";
-import { Header, Footer, AdminLogin, BlogViewer } from "./components";
 import { Admin, Home } from "./pages";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { useState, useEffect } from "react";
 import { app } from "./Helpers/firebaseHelper";
+
+// lazy loading
+
+const Header = lazy(() => import("./components/Header"));
+const Footer = lazy(() => import("./components/Footer"));
+const AdminLogin = lazy(() => import("./components/AdminLogin"));
+const BlogViewer = lazy(() => import("./components/BlogViewer"));
 
 export interface User {
   uid: string;
@@ -26,16 +32,18 @@ function App() {
   }, []);
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/viewblog/:id" element={<BlogViewer />} />
-        <Route path="/login" element={<AdminLogin />} />
-        <Route element={<PrivateRoutes isAdmin={user} />}>
-          <Route path="/admin" element={<Admin />} />
-        </Route>
-      </Routes>
-      <Footer />
+      <Suspense fallback={<> Loading...</>}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/viewblog/:id" element={<BlogViewer />} />
+          <Route path="/login" element={<AdminLogin />} />
+          <Route element={<PrivateRoutes isAdmin={user} />}>
+            <Route path="/admin" element={<Admin />} />
+          </Route>
+        </Routes>
+        <Footer />
+      </Suspense>
     </Router>
   );
 }

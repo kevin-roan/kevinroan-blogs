@@ -12,12 +12,13 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, tags }) => {
   return (
     <Box
       width={"300px"}
-      border={"2px solid var(--secondary-color)"}
       minHeight={"34vh"}
       position={"relative"}
       borderRadius={"10px"}
       height="50vh"
       overflow={"hidden"}
+      border="1px solid #ccc"
+      boxShadow="0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)"
     >
       <Container>
         <Flex direction={"column"} alignItems={"center"} overflow={"auto"}>
@@ -54,9 +55,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, tags }) => {
         <Button variant={"ghost"} color="blueviolet-600" disabled={true}>
           Learn More <FaArrowRight />
         </Button>
-        <Text display="flex" alignItems={"center"} paddingX={"10px"}>
-          4 Min Read
-        </Text>
       </Box>
     </Box>
   );
